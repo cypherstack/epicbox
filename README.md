@@ -1,5 +1,7 @@
 epic# [epicbox://](http://epicbox.io): An open transaction building protocol
 
+Notice: Rust version of epicbox is depricated and we now use epicboxnodejs (see repo)
+
 [![Join the chat at https://gitter.im/vault713/epicbox](https://badges.gitter.im/vault713/epicbox.svg)](https://gitter.im/vault713/epicbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Introduction
