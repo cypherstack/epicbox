@@ -308,19 +308,15 @@ impl AsyncServer {
     }
 
     fn post_slate_federated(&self, from_address: &EpicboxAddress, to_address: &EpicboxAddress, str: String, signature: String, message_expiration_in_seconds: Option<u32>) -> EpicboxResponse {
-
-        let mut object: serde_json::Value = serde_json::from_str(&str).unwrap();
-        let domain = object["destination"]["domain"].as_str().unwrap();
-
         let url = match self.epicbox_protocol_unsecure {
             false => format!(
                 "wss://{}:{}",
-                domain,
+                to_address.domain,
                 to_address.port
             ),
             true => format!(
                 "ws://{}:{}",
-                domain,
+                to_address.domain,
                 to_address.port
             )
         };

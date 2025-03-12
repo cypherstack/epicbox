@@ -10,7 +10,7 @@ use futures::{
     Future
 };
 
-use epicboxlib::error::Result;
+use stack_test_epicboxlib::error::Result;
 
 use crate::broker::{BrokerRequest, BrokerResponse};
 use crate::broker::stomp::session::SessionEvent;
@@ -210,8 +210,6 @@ impl BrokerSession {
                     reply_to
                 )
             )
-            .with(Header::new(HeaderName::from_str("durable"),"true"))
-            .with(Header::new(HeaderName::from_str("persistent"), "true"))
             .send();
     }
 
