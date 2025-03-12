@@ -24,8 +24,7 @@ pub fn version_bytes() -> Vec<u8> {
 pub struct EpicboxAddress {
     pub public_key: String,
     pub domain: String,
-    pub port: u16,
-    pub version_bytes: Option<Vec<u8>>,
+    pub port: u16
 }
 
 impl EpicboxAddress {
@@ -33,8 +32,7 @@ impl EpicboxAddress {
         Self {
             public_key: public_key.to_base58_check(version_bytes()),
             domain: domain.unwrap_or(DEFAULT_EPICBOX_DOMAIN.to_string()),
-            port: port.unwrap_or(DEFAULT_EPICBOX_PORT),
-            version_bytes: None,
+            port: port.unwrap_or(DEFAULT_EPICBOX_PORT)
         }
     }
 
@@ -48,7 +46,6 @@ impl EpicboxAddress {
             public_key: public_key.to_base58_check(version_bytes.clone()),
             domain: domain.unwrap_or(DEFAULT_EPICBOX_DOMAIN.to_string()),
             port: port.unwrap_or(DEFAULT_EPICBOX_PORT),
-            version_bytes: Some(version_bytes),
         }
     }
 
