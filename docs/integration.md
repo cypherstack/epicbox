@@ -15,15 +15,12 @@ if rust is already installed, you can simply update version with rustup update
 
 * A running instance of [rabbitmq](https://www.rabbitmq.com/)
 
-* RabbitMQ Plugin stomp (https://www.rabbitmq.com/stomp.html) [rabbitmq](https://www.rabbitmq.com/)
-
 ### Environment Variables
 
-* `BROKER_URI`: The rabbitmq broker URI in the form of (i.e. domain:port). defaults to 127.0.0.1:61613, watch your rabbitmq log for the stomp plugin and port started STOMP TCP listener on [::]:61613
-
+* `BROKER_URI`: The rabbitmq broker URI in the form of (i.e. domain:port). defaults to 127.0.0.1:5672
 * `RABBITMQ_DEFAULT_USER`: The username with which epicbox would establish connection to the rabbit broker.
 * `RABBITMQ_DEFAULT_PASS`: The associated password to use
-* `BIND_ADDRESS`: The http listener bind address (defaults to 0.0.0.0:3423)
+* `BIND_ADDRESS`: The http listener bind address (defaults to 0.0.0.0:3420)
 
 ### Installation
 
@@ -36,51 +33,9 @@ And then to run:
 ```
 $ cd target/release
 $ ./epicbox
-... or with debug information and custom settings
-$  RUST_LOG=debug EPICBOX_DOMAIN=epicbox.io BIND_ADDRESS=0.0.0.0:3423 ./epicbox
 ```
 
 Once epicbox is running it should establish connection with the rabbitmq broker and start to listen to incoming connection on the bind address.
-
-
-## Run Epicbox with Nginx (nginx server conf)
-```
-server {
-    
-        server_name epicbox.io;
-
-        root /var/www/html/epicbox/;
-        index index.html index.htm;
-        
-        location / {
-           proxy_set_header        Host $host;
-           proxy_set_header        X-Real-IP $remote_addr;
-           proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header        X-Forwarded-Proto $scheme;
-        
-
-	    # set this to the BIND_ADDRESS=0.0.0.0:3423 
-            proxy_pass http://0.0.0.0:3423;  
-            proxy_read_timeout  90; 
-            
-            # WebSocket support
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade"; 
-        }
-        
-    
-    
-    
-    listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/epicbox.io/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/epicbox.io/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-    
-    
-}
-```
 
 ## Integration
 
