@@ -1,10 +1,10 @@
 [package]
-name = "epicbox"
-version = "0.1.0"
-authors = ["vault713 devs"]
+name = "cs_epicbox"
+version = "0.0.1" # 0.0.1 = 0.1.1
+authors = ["vault713 devs", "Likho", "sneurlax"]
 description = "A slate relay service for Epic."
-keywords = ["epic", "mimblewimble", "rust", "crypto", "cryptocurrency", "wallet713", "vault713" ]
 license = "Apache-2.0"
+repository = "https://github.com/EpicCash/epicbox"
 readme = "README.md"
 
 [dependencies]
@@ -28,5 +28,8 @@ tokio-timer = "0.2"
 toml = "0.4"
 unicode-segmentation = "0.1"
 uuid = { version = "0.7", features = ["serde", "v4"] }
-ws = { version = "0.9.2", features = ["ssl"] }
-epicboxlib = { path = "./epicboxlib" }
+ws = "0.7"
+
+epicboxlib = { package = "stack_test_epicboxlib", version = "^1.0.0" }
+# TODO:
+# epicboxlib = { package = "cs_epicboxlib", version = "^1.0.0" }
