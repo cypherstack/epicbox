@@ -1,7 +1,7 @@
 [package]
-name = "cs_epicbox"
-version = "0.0.1" # 0.0.1 = 0.1.1
-authors = ["vault713 devs", "Likho", "sneurlax"]
+name = "stack_test_epicbox"
+version = "0.1.1"
+authors = ["vault713 devs"]
 description = "A slate relay service for Epic."
 license = "Apache-2.0"
 repository = "https://github.com/EpicCash/epicbox"
@@ -30,6 +30,4 @@ unicode-segmentation = "0.1"
 uuid = { version = "0.7", features = ["serde", "v4"] }
 ws = "0.7"
 
-epicboxlib = { package = "stack_test_epicboxlib", version = "^1.0.0" }
-# TODO:
-# epicboxlib = { package = "cs_epicboxlib", version = "^1.0.0" }
+stack_test_epicboxlib = "1.0.2"
